@@ -1,10 +1,7 @@
 
-
-
-
 let container = document.querySelector('#text-container');
 
-
+// You need to sign up for account at mapbox to get secret and public key to test. https://docs.mapbox.com/help/getting-started/
 mapboxgl.accessToken = '';
 
 const map = new mapboxgl.Map({
@@ -29,7 +26,6 @@ mapboxgl: mapboxgl
 });
 
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-
 
 var requestOptions = {
     method: 'GET',
