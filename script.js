@@ -56,13 +56,13 @@ if (!mapboxgl.supported()) {
     // send request to mapbox api
     const fetchMap = fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/chester.json?proximity=-74.70850,40.78375&access_token=${mapboxgl.accessToken}`)
 
-    // Use promise all to get data from both apis
-    //promise all accepts array. 
+    // Use promise all to get data for both apis
+    // promise all accepts array. 
     Promise.all([fetchPolice,fetchMap])
     .then(values => {
-        // loop over values in array of both responses. convert each element into array to json. return converted array of reponses.  
+        // loop over values in array of both responses. convert each element in array to json. return converted array of responses.  
         return Promise.all(values.map(r => r.json()));
-    }) // value variable is now an array of values from both responses
+    }) // value variable is now an array of  json values from both responses
     .then(value => console.log(value));
     
     
