@@ -18,7 +18,7 @@
 
         } else {
             // sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
-            mapboxgl.accessToken = 'pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJja3ZrNWYxcDEwYXQxMzJrbHc2cG9lMnlsIn0.TINYt-VPvenBz1wEAUCeQg';
+            mapboxgl.accessToken = '';
 
             const map = new mapboxgl.Map({
                 container: 'map',
