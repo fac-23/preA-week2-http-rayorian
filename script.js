@@ -8,7 +8,7 @@ if (!mapboxgl.supported()) {
     
 } else {
     // sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
-    mapboxgl.accessToken = '';
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJja3ZrNWYxcDEwYXQxMzJrbHc2cG9lMnlsIn0.TINYt-VPvenBz1wEAUCeQg';
 
     const map = new mapboxgl.Map({
         container: 'map',
@@ -61,9 +61,13 @@ if (!mapboxgl.supported()) {
     Promise.all([fetchPolice,fetchMap])
     .then(values => {
         // loop over values in array of both responses. convert each element in array to json. return converted array of responses.  
-        return Promise.all(values.map(r => r.json()));
-    }) // value variable is now an array of  json values from both responses
-    .then(value => console.log(value));
+        return Promise.all(values.map(element => element.json()));
+    }) 
+    .then( ([policeData, mapData]) => {
+        // value variable is now an array of  json values from both responses. value can also be deconstructed to 
+        console.log(policeData, mapData)
+    })
+    
     
     
 
