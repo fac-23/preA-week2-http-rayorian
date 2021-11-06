@@ -16,7 +16,7 @@ body { margin: 0; padding: 0; }
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
 
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
- 
+
 <style>
 .geocoder {
   position: absolute;
@@ -34,15 +34,32 @@ body { margin: 0; padding: 0; }
   width:400px;
 }
 </style>
- 
+
 <div id="map" ></div>
  <br>
+
 <div id="geocoder" class="geocoder"></div>
+<select name="crimes" id="crimes">
+	<option value="">--Please choose an option--</option>
+	<option value="anti-social-behaviour">anti-social-behaviour</option>
+	<option value="bicycle-theft">bicycle-theft</option>
+	<option value="burglary">burglary</option>
+	<option value="criminal-damage-arson">criminal-damage-arson</option>
+	<option value="drugs">drugs</option>
+	<option value="possession-of-weapons">possession-of-weapons</option>
+	<option value="public-order">public-order</option>
+	<option value="shoplifting">shoplifting</option>
+	<option value="robbery">robbery</option>
+	<option value="theft-from-the-person">theft-from-the-person</option>
+	<option value="vehicle-crime">vehicle-crime</option>
+	<option value="violent-crime">violent-crime</option>
+	<option value="other-crime">other-crime</option>
+</select>
 
 <br>
 <div id="text-container"></div>
- 
+
 <script src="script.js"></script>
- 
+
 </body>
 </html>
