@@ -17,7 +17,7 @@
 
 				var currentMarkers=[];
 				// sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
-				mapboxgl.accessToken = '';
+				mapboxgl.accessToken = 'pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJja3ZrNWYxcDEwYXQxMzJrbHc2cG9lMnlsIn0.TINYt-VPvenBz1wEAUCeQg';
 
 				const map = new mapboxgl.Map({
 						container: 'map',
@@ -67,6 +67,7 @@
 							}
 						}
 
+
 						//loop over police data
 						for( let i =0; i < policeData.length; i++){
 
@@ -105,6 +106,12 @@
 								//add markers
 								const marker = new mapboxgl.Marker()
 								.setLngLat([`${policeData[i].location.longitude}`, `${policeData[i].location.latitude}`])
+								.setPopup(
+									new mapboxgl.Popup({ offset: 25 }) // add popups
+										.setHTML(
+											`<h3>${policeData[i].category.replace(/\-/g, ' ')}</h3><p>${policeData[i].location.street.name}</p>`
+										)
+								)
 								.addTo(map);
 
 								// save tmp marker into currentMarkers array

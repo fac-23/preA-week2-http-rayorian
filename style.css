@@ -72,3 +72,12 @@ main#container {
 #search-section #text-container .crime-panel p {
 	text-indent: 0.25em;
 }
+
+.mapboxgl-popup {
+	max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+	text-align: center;
+	font-family: "Open Sans", sans-serif;
+}
