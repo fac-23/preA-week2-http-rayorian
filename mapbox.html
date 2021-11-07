@@ -4,12 +4,11 @@
 <meta charset="utf-8">
 <title>Place the geocoder input outside the map</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link rel="stylesheet" href="style.css">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
 <style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 100px; bottom: 0; width: 100%; }
-#text-container{float:right; display:block;}
+
 </style>
 </head>
 <body>
@@ -17,47 +16,38 @@ body { margin: 0; padding: 0; }
 
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
 
-<style>
-.geocoder {
-  position: absolute;
-  z-index: 1;
-  width: 50%;
-  left: 50%;
-  margin-left: -25%;
-  top: 10px;
-}
-.mapboxgl-ctrl-geocoder {
-  min-width: 100%;
-}
-#map {
-  margin-top: 75px;
-  width:400px;
-}
-</style>
+<main id="container">
 
-<div id="map" ></div>
- <br>
+	<div id="map" ></div>
 
-<div id="geocoder" class="geocoder"></div>
-<select name="crimes" id="crimes">
-	<option value="">--Please choose an option--</option>
-	<option value="anti-social-behaviour">anti-social-behaviour</option>
-	<option value="bicycle-theft">bicycle-theft</option>
-	<option value="burglary">burglary</option>
-	<option value="criminal-damage-arson">criminal-damage-arson</option>
-	<option value="drugs">drugs</option>
-	<option value="possession-of-weapons">possession-of-weapons</option>
-	<option value="public-order">public-order</option>
-	<option value="shoplifting">shoplifting</option>
-	<option value="robbery">robbery</option>
-	<option value="theft-from-the-person">theft-from-the-person</option>
-	<option value="vehicle-crime">vehicle-crime</option>
-	<option value="violent-crime">violent-crime</option>
-	<option value="other-crime">other-crime</option>
-</select>
+	<section id="search-section">
+		<h3>Serach Here</h3>
 
-<br>
-<div id="text-container"></div>
+	<form id="select-box">
+		<label for="crimes">Crime Committed</label>
+		<select name="crimes" id="crimes">
+		<option value="">--Please choose an option--</option>
+		<option value="anti-social-behaviour">anti social behaviour</option>
+		<option value="bicycle-theft">bicycle-theft</option>
+		<option value="burglary">burglary</option>
+		<option value="criminal-damage-arson">criminal-damage-arson</option>
+		<option value="drugs">drugs</option>
+		<option value="possession-of-weapons">possession-of-weapons</option>
+		<option value="public-order">public-order</option>
+		<option value="shoplifting">shoplifting</option>
+		<option value="robbery">robbery</option>
+		<option value="theft-from-the-person">theft-from-the-person</option>
+		<option value="vehicle-crime">vehicle-crime</option>
+		<option value="violent-crime">violent-crime</option>
+		<option value="other-crime">other-crime</option>
+		</select>
+	</form>
+
+		<div id="text-container"></div>
+
+	</section>
+
+</main>
 
 <script src="script.js"></script>
 

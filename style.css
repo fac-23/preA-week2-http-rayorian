@@ -1,0 +1,74 @@
+body {
+	color: #333;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	padding: 0;
+}
+
+main#container {
+	display: flex;
+	flex-flow: row;
+}
+
+#map {
+	width: 70%;
+	height: 100vh;
+}
+
+#search-section {
+	margin: 0;
+	width: 30%;
+	display: flex;
+	flex-flow: column;
+	padding: 0.5em;
+}
+
+#search-section #select-box {
+	margin: 0;
+	width: 100;
+	height: 100px;
+	display: block;
+}
+
+#search-section form#select-box select#crimes {
+	margin: 0;
+	width: 100%;
+	height: 40px;
+	font-size: 1rem;
+}
+
+#search-section form#select-box select#crimes option {
+	font-size: 1rem;
+	line-height: 35px;
+	height: 35px;
+}
+
+#search-section #text-container {
+	display: block;
+	width: 100%;
+	padding: 0.25em;
+}
+
+#search-section #text-container .crime-panel {
+	height: auto;
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border: 2px solid #000;
+	margin-bottom: 0.5em;
+}
+
+#search-section #text-container .crime-panel h2 {
+	margin: 0;
+	font-size: 1.1em;
+	text-align: left;
+	line-height: 35px;
+	text-indent: 0.25em;
+}
+
+#search-section #text-container .crime-panel p {
+	text-indent: 0.25em;
+}

@@ -16,7 +16,7 @@
 			}else {
 
 				// sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
-				mapboxgl.accessToken = '';
+				mapboxgl.accessToken = 'pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJja3ZrNWYxcDEwYXQxMzJrbHc2cG9lMnlsIn0.TINYt-VPvenBz1wEAUCeQg';
 
 				const map = new mapboxgl.Map({
 						container: 'map',
@@ -41,10 +41,11 @@
 				// promise all accepts array.
 				Promise.all([fetchPolice,fetchMap])
 				.then(values => {
-						// loop over values in array of both responses. convert each element in array to json. return converted array of responses.
+						// convert returned promises to json data by passing promises (which are arrays) into promise.all again and looping over arrays and applying .json() to each element of the array to return an array of json data .
 						return Promise.all(values.map(element => element.json()));
 				})
-				.then( ([policeData, mapData]) => {	// deconstruct value variable array of json values from both responses.
+				.then( ([policeData, mapData]) => {	// deconstruct array of data from both apis responses.
+					console.log(policeData, mapData)
 
 					// event listener for crime select element
 					select.addEventListener('change', (event) => {
@@ -58,26 +59,51 @@
 						}
 
 						//loop over police data return from api
-						for( let police of policeData){
+						for( let i =0; i < policeData.length; i++){
 
 							//compare event target value to police api value
 							// thye are the same create element
-							if(event.target.value === police.category ){
+							if(event.target.value === policeData[i].category ){
 
-								console.log(police.category);
+								// panel
+								panel = document.createElement("SECTION");
+								panel.setAttribute("class", "crime-panel");
 
-								// Create a element
-								btn = document.createElement("H2");
-								// add id
-								btn.setAttribute("class", "title");
-								// add text
-								btn.innerHTML = `${police.category}`;
-								// append element to container
-								container.appendChild(btn);
+								// title
+								title = document.createElement("H2");
+								title.setAttribute("class", "title");
+								title.innerHTML = `${policeData[i].category.replace(/\-/g, ' ')}`;
+
+								crimeDate = document.createElement("P");
+								crimeDate.innerHTML = `${policeData[i].month}`;
+
+								crimeLocation = document.createElement("P");
+								crimeLocation.innerHTML = `${policeData[i].location.street.name}`;
+
+
+
+								// append element
+								panel.appendChild(title);
+								panel.appendChild(crimeDate);
+								panel.appendChild(crimeLocation);
+								container.appendChild(panel);
+
+								container.style.overflow = "scroll";
+								container.style.height = "680px";
+
+								//add markers
+								const marker = new mapboxgl.Marker()
+								.setLngLat([`${policeData[i].location.longitude}`, `${policeData[i].location.latitude}`])
+								.addTo(map);
+
+
 
 							}
 						}
 					});
+
+				}).catch((status)=>{
+					console.log(status)
 				});
 			}
     });
