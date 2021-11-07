@@ -15,8 +15,9 @@
 
 			}else {
 
+				var currentMarkers=[];
 				// sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
-				mapboxgl.accessToken = '';
+				mapboxgl.accessToken = 'pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJja3ZrNWYxcDEwYXQxMzJrbHc2cG9lMnlsIn0.TINYt-VPvenBz1wEAUCeQg';
 
 				const map = new mapboxgl.Map({
 						container: 'map',
@@ -41,7 +42,7 @@
 				// promise all accepts array.
 				Promise.all([fetchPolice,fetchMap])
 				.then(values => {
-						// convert returned promises to json data by passing promises (which are arrays) into promise.all again and looping over arrays and applying .json() to each element of the array to return an array of json data .
+						// convert returned promises to json data by passing promises (which are arrays) into promise.all again and looping over arrays and apply .json() to each element of the array then return an array as json data.
 						return Promise.all(values.map(element => element.json()));
 				})
 				.then( ([policeData, mapData]) => {	// deconstruct array of data from both apis responses.
@@ -51,18 +52,26 @@
 					select.addEventListener('change', (event) => {
 
 						//get all elements created if they already exist
-						let list = document.getElementsByClassName('title');
+						let list = document.getElementsByClassName('crime-panel');
 
-						//if elements already exists remove them to be replaced by new elements.
+						//if elements exists remove them to make space for new elements.
 						if(list){
 							Array.from(list).forEach(e => e.remove() );
+
 						}
 
-						//loop over police data return from api
+						// if markers exist remove markers from array to make space for new markers
+						if (currentMarkers!==null) {
+							for (var i = currentMarkers.length - 1; i >= 0; i--) {
+								currentMarkers[i].remove();
+							}
+						}
+
+						//loop over police data
 						for( let i =0; i < policeData.length; i++){
 
-							//compare event target value to police api value
-							// thye are the same create element
+							//compare event target value to police api category value
+							// if true create elements to display data
 							if(event.target.value === policeData[i].category ){
 
 								// panel
@@ -74,29 +83,32 @@
 								title.setAttribute("class", "title");
 								title.innerHTML = `${policeData[i].category.replace(/\-/g, ' ')}`;
 
+								// crime date
 								crimeDate = document.createElement("P");
 								crimeDate.innerHTML = `${policeData[i].month}`;
 
+								// crime location
 								crimeLocation = document.createElement("P");
 								crimeLocation.innerHTML = `${policeData[i].location.street.name}`;
 
 
-
-								// append element
+								// append elements
 								panel.appendChild(title);
 								panel.appendChild(crimeDate);
 								panel.appendChild(crimeLocation);
 								container.appendChild(panel);
 
-								container.style.overflow = "scroll";
+								//set a fixed height to text container and set overflow to scroll to hide overflow of the large amount of text returned from api and add a vertical scroll bar to enable scrolling.
 								container.style.height = "680px";
+								container.style.overflow = "scroll";
 
 								//add markers
 								const marker = new mapboxgl.Marker()
 								.setLngLat([`${policeData[i].location.longitude}`, `${policeData[i].location.latitude}`])
 								.addTo(map);
 
-
+								// save tmp marker into currentMarkers array
+								currentMarkers.push(marker);
 
 							}
 						}
