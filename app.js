@@ -1,21 +1,31 @@
-// Use navigator object to retrieve current user coordiantes
-const lat = 51.591577;
-const lng = -0.0201425;
-// return a url to pass into the getCrimes function
+// user coords 
+let lat;
+let lng;
 
-// request street crime data from police API using user coordinates
+// Use Geolocation API of the navigator object to retrieve current user coordiantes
+const navigator = window.navigator;
 
-const userLocation = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}`;
+let positionPromise = new Promise(() => 
+    navigator.geolocation.getCurrentPosition(getUserCoords));
 
-function getCrimes(userLocation) {
-    fetch(userLocation)
+positionPromise.then(console.log); // does not work! 
+
+function getUserCoords(position) {
+        const {latitude, longitude} = position.coords;
+        lat = latitude;
+        lng = longitude;
+        //  url template to pass into the getCrimes function
+        const url = `https://data.police.uk/api/crimes-at-location?&lat=${lat}&lng=${lng}`;
+        console.log({url});
+        return url;
+};
+
+// request location crime data from police API using user coordinates
+function getCrimes(url) {
+    fetch(url)
     .then((response) => response.json())
     .then(console.log);
-} 
+}
 
-// getCrimes(userLocation);
-
-// try making neighbourhood boundary request
-fetch(`https://data.police.uk/api/leicestershire/NC04/boundary`)
-.then((response) => response.json())
-.then(console.log);
+// call the function with non-variable lat and lng to test access to API
+getCrimes(`https://data.police.uk/api/crimes-at-location?&lat=51.5918737&lng=-0.0179151`);
