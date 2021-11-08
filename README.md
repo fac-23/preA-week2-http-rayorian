@@ -2,8 +2,8 @@
 
 User stories:
 
-- I can select a city/area from a dropdown menu
-- I can see a list of crimes that occured in that area
+- I can see a list of crimes that occured in my current location
+- I can filter crimes by category
 
 Stretch goal:
 - Indicate that data is loading
