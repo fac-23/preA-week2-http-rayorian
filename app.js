@@ -1,31 +1,47 @@
-// user coords 
-let lat;
-let lng;
-
 // Use Geolocation API of the navigator object to retrieve current user coordiantes
-const navigator = window.navigator;
+(function() {
+    const navigator = window.navigator;
 
-let positionPromise = new Promise(() => 
-    navigator.geolocation.getCurrentPosition(getUserCoords));
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            let lat = position.coords.latitude;
+			let lon = position.coords.longitude;
 
-positionPromise.then(console.log); // does not work! 
-
-function getUserCoords(position) {
-        const {latitude, longitude} = position.coords;
-        lat = latitude;
-        lng = longitude;
-        //  url template to pass into the getCrimes function
-        const url = `https://data.police.uk/api/crimes-at-location?&lat=${lat}&lng=${lng}`;
-        console.log({url});
-        return url;
-};
+            getCrimes(lat, lon);
+        });
+    }
+})() 
 
 // request location crime data from police API using user coordinates
-function getCrimes(url) {
-    fetch(url)
+function getCrimes(lat, lon) {
+    fetch(`https://data.police.uk/api/crimes-at-location?&lat=${lat}&lng=${lon}`)
     .then((response) => response.json())
-    .then(console.log);
+    .then((crimesArray) => crimesArray.forEach((el) => displayCrimes(el)));
 }
 
-// call the function with non-variable lat and lng to test access to API
-getCrimes(`https://data.police.uk/api/crimes-at-location?&lat=51.5918737&lng=-0.0179151`);
+function displayCrimes(el) {
+    container = document.querySelector('main');
+    loader = document.querySelector('#loader');
+    panel = document.createElement("SECTION");
+	panel.setAttribute("class", "crime-panel");
+
+	// title
+	title = document.createElement("H2");
+	title.setAttribute("class", "title");
+	title.innerHTML = `${el.category.replace(/\-/g, ' ')}`;
+
+	// crime date
+	crimeDate = document.createElement("P");
+	crimeDate.innerHTML = `${el.month}`;
+
+	// crime location
+	crimeLocation = document.createElement("P");
+	crimeLocation.innerHTML = `${el.location.street.name}`;
+
+	// append elements
+	panel.appendChild(title);
+	panel.appendChild(crimeDate);
+	panel.appendChild(crimeLocation);
+	container.appendChild(panel);
+    loader.setAttribute('hidden', 'true');
+}
