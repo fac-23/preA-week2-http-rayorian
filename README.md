@@ -1,4 +1,4 @@
-# Crime checker app
+# Crime checker app 👮‍♀️
 
 User stories:
 
@@ -8,3 +8,5 @@ User stories:
 Stretch goal:
 - Indicate that data is loading
 - Show error if something went wrong 
+
+[Live site](https://fac-23.github.io/preA-week2-http-rayorian/) 🔗
