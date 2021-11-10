@@ -12,7 +12,15 @@ main#container {
 	flex-flow: row;
 }
 
+#loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 #map {
+	position: relative;
 	width: 70%;
 	height: 100vh;
 }
