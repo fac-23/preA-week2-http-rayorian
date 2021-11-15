@@ -13,10 +13,49 @@ main#container {
 }
 
 #loader {
+	visibility: visible;
+	opacity: 1;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	transition: visibility 0ms linear, opacity 400ms linear;
+}
+
+#loader::before {
+	animation: 2s linear infinite spin;
+	border: solid 3px #eee;
+	border-bottom-color: #02fa55;
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	content: '';
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	transform-origin: center;
+	will-change: transform;
+}
+
+@keyframes spin {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
+/* text elements for screen reader only */
+.sr-only {
+	opacity: 0;
+	position: absolute;
+}
+
+.fade-out {
+	opacity: 0;
+	visibility: hidden;
 }
 
 #map {

@@ -50,7 +50,7 @@
 					
 					// hide loader notice
 					const loader = document.querySelector('#loader');
-					loader.setAttribute('hidden', true);
+					loader.classList.add('fade-out');
 					
 					// event listener for crime select element
 					select.addEventListener('change', (event) => {
