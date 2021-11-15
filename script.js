@@ -43,11 +43,15 @@
 				Promise.all([fetchPolice,fetchMap])
 				.then(values => {
 						// convert returned promises to json data by passing promises (which are arrays) into promise.all again and looping over arrays and apply .json() to each element of the array then return an array as json data.
-						return Promise.all(values.map(element => element.json()));
+						return Promise.all(values.map(element => element.json()));		
 				})
 				.then( ([policeData, mapData]) => {	// deconstruct array of data from both apis responses.
-					console.log(policeData, mapData)
-
+					console.log(policeData, mapData);
+					
+					// hide loader notice
+					const loader = document.querySelector('#loader');
+					loader.classList.add('fade-out');
+					
 					// event listener for crime select element
 					select.addEventListener('change', (event) => {
 
