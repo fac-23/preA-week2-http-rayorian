@@ -7,22 +7,38 @@ body {
 	padding: 0;
 }
 
+h3{
+	margin:0;
+	line-height:50px;
+	background-color:#000;
+	color:#fff;
+	text-indent:0.25em;
+}
+
+h4#area-header{
+	margin:0;
+	padding:0%;
+	line-height:30px;
+	font-size:0.9em;
+}
+
 main#container {
 	padding: 0.5em;
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(6, auto);
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: 40px repeat(5, 1fr);
 	grid-column-gap: 0.5em;
 	grid-row-gap: 0px;
+	height:100vh;
 }
 
 main#container header#main-header {
-	grid-area: 1 / 1 / 2 / 6;
+	grid-area: 1 / 1 / 2 / 7;
 }
 
 main#container header#main-header h1 {
-	font-size: 1.9em;
-	line-height: 60px;
+	font-size: 0.85em;
+	line-height: 40px;
 	margin: 0;
 }
 
@@ -73,13 +89,13 @@ main#container header#main-header h1 {
 }
 
 #map {
-	grid-area: 2 / 1 / 6 / 4;
+	grid-area: 2 / 1 / 5 / 7;
 	width: 100%;
-	height: 100vh;
+	height: 60vh;
 }
 
 #search-section {
-	grid-area: 2 / 4 / 6 / 6;
+	grid-area: 5 / 1 / 7 / 7;
 	margin: 0;
 	width: 100%;
 	display: flex;
@@ -87,21 +103,32 @@ main#container header#main-header h1 {
 }
 
 #search-section h3 {
-	font-size: 1.3em;
+	font-size: 1em;
 }
 
 #search-section #select-box {
 	margin: 0;
-	width: 100;
+	width: 100%;
 	height: 100px;
 	display: block;
+}
+
+#search-section #select-box > label {
+	display:block;
+	line-height:50px;
+	background-color:#000;
+	color:#fff;
+	font-weight:bold;
+	font-size:1em;
+	text-indent:0.25em;
+
 }
 
 #search-section form#select-box select#crimes {
 	margin: 0;
 	width: 100%;
 	height: 40px;
-	font-size: 1rem;
+	font-size: 0.9rem;
 }
 
 #search-section form#select-box select#crimes option {
@@ -113,7 +140,7 @@ main#container header#main-header h1 {
 #search-section #text-container {
 	display: block;
 	width: 100%;
-	padding: 0.25em;
+	padding: 0;
 }
 
 #search-section #text-container .crime-panel {
@@ -121,21 +148,24 @@ main#container header#main-header h1 {
 	display: block;
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	width: 99%;
 	border: 2px solid #000;
 	margin-bottom: 0.5em;
 }
 
 #search-section #text-container .crime-panel h2 {
 	margin: 0;
-	font-size: 1.1em;
+	font-size: 1em;
 	text-align: left;
 	line-height: 35px;
 	text-indent: 0.25em;
+	background-color:#000;
+	color:#fff;
 }
 
 #search-section #text-container .crime-panel p {
 	text-indent: 0.25em;
+	font-size:0.85em;
 }
 
 .mapboxgl-popup {
@@ -149,4 +179,695 @@ main#container header#main-header h1 {
 
 .mapboxgl-marker:hover {
 	cursor: pointer;
+}
+
+@media screen and (min-width: 1024px) {
+
+	h3{
+		margin:0;
+		line-height:50px;
+		text-indent:0.25em;
+	}
+
+	h4#area-header{
+		margin:0;
+		padding:0%;
+		line-height:40px;
+	}
+
+	main#container {
+		padding: 0.5em;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: 60px repeat(5, 1fr);
+		grid-column-gap: 0.5em;
+		grid-row-gap: 0px;
+	}
+
+	main#container header#main-header {
+		grid-area: 1 / 1 / 2 / 7;
+	}
+
+	main#container header#main-header h1 {
+		font-size: 1.8em;
+		line-height: 60px;
+		margin: 0;
+	}
+
+	#loader {
+		visibility: visible;
+		opacity: 1;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		transition: visibility 0ms linear, opacity 400ms linear;
+	}
+
+	#loader::before {
+		animation: 2s linear infinite spin;
+		border: solid 3px #eee;
+		border-bottom-color: #02fa55;
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transform-origin: center;
+		will-change: transform;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+
+		100% {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+
+	/* text elements for screen reader only */
+	.sr-only {
+		opacity: 0;
+		position: absolute;
+	}
+
+	.fade-out {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	#map {
+		grid-area: 2 / 1 / 7 / 5;
+		width: 100%;
+		height: 100vh;
+	}
+
+	#search-section {
+		grid-area: 2 / 5 / 7 / 7;
+		margin: 0;
+		width: 100%;
+		display: flex;
+		flex-flow: column;
+	}
+
+	#search-section h3 {
+		font-size: 1.2em;
+	}
+
+	#search-section #select-box {
+		margin: 0;
+		width: 100%;
+		height: 100px;
+		display: block;
+	}
+
+	#search-section #select-box > label {
+		display:block;
+		line-height:50px;
+		background-color:#000;
+		color:#fff;
+		font-weight:bold;
+		font-size:1.1em;
+		text-indent:0.25em;
+
+	}
+
+	#search-section form#select-box select#crimes {
+		margin: 0;
+		width: 100%;
+		height: 40px;
+		font-size: 0.9rem;
+	}
+
+	#search-section form#select-box select#crimes option {
+		font-size: 0.9rem;
+		line-height: 35px;
+		height: 35px;
+	}
+
+	#search-section #text-container {
+		display: block;
+		width: 100%;
+		padding: 0;
+	}
+
+	#search-section #text-container .crime-panel {
+		height: auto;
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 99%;
+		border: 2px solid #000;
+		margin-bottom: 0.5em;
+	}
+
+	#search-section #text-container .crime-panel h2 {
+		margin: 0;
+		font-size: 1.15em;
+		text-align: left;
+		line-height: 35px;
+		text-indent: 0.25em;
+		background-color:#000;
+		color:#fff;
+	}
+
+	#search-section #text-container .crime-panel p {
+		text-indent: 0.25em;
+		font-size:0.9em;
+	}
+
+	.mapboxgl-popup {
+		max-width: 200px;
+	}
+
+	.mapboxgl-popup-content {
+		text-align: center;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.mapboxgl-marker:hover {
+		cursor: pointer;
+	}
+}
+
+@media screen and (min-width: 801px) and (max-width: 1023px) {
+	h3{
+		margin:0;
+		line-height:50px;
+		text-indent:0.25em;
+	}
+
+	h4#area-header{
+		margin:0;
+		padding:0%;
+		line-height:30px;
+		font-size:0.9em;
+	}
+
+	main#container {
+		padding: 0.5em;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: 60px repeat(5, 1fr);
+		grid-column-gap: 0.5em;
+		grid-row-gap: 0px;
+		height:100vh;
+	}
+
+	main#container header#main-header {
+		grid-area: 1 / 1 / 2 / 7;
+	}
+
+	main#container header#main-header h1 {
+		font-size: 1.4em;
+		line-height: 60px;
+		margin: 0;
+	}
+
+	#loader {
+		visibility: visible;
+		opacity: 1;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		transition: visibility 0ms linear, opacity 400ms linear;
+	}
+
+	#loader::before {
+		animation: 2s linear infinite spin;
+		border: solid 3px #eee;
+		border-bottom-color: #02fa55;
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transform-origin: center;
+		will-change: transform;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+
+		100% {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+
+	/* text elements for screen reader only */
+	.sr-only {
+		opacity: 0;
+		position: absolute;
+	}
+
+	.fade-out {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	#map {
+		grid-area: 2 / 1 / 7 / 4;
+		width: 100%;
+		height: 100vh;
+	}
+
+	#search-section {
+		grid-area: 2 / 4 / 7 / 7;
+		margin: 0;
+		width: 100%;
+		display: flex;
+		flex-flow: column;
+	}
+
+	#search-section h3 {
+		font-size: 1em;
+	}
+
+	#search-section #select-box {
+		margin: 0;
+		width: 100%;
+		height: 100px;
+		display: block;
+	}
+
+	#search-section #select-box > label {
+		display:block;
+		line-height:50px;
+		background-color:#000;
+		color:#fff;
+		font-weight:bold;
+		font-size:1em;
+		text-indent:0.25em;
+
+	}
+
+	#search-section form#select-box select#crimes {
+		margin: 0;
+		width: 100%;
+		height: 40px;
+		font-size: 0.9rem;
+	}
+
+	#search-section form#select-box select#crimes option {
+		font-size: 0.9rem;
+		line-height: 35px;
+		height: 35px;
+	}
+
+	#search-section #text-container {
+		display: block;
+		width: 100%;
+		padding: 0;
+	}
+
+	#search-section #text-container .crime-panel {
+		height: auto;
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 99%;
+		border: 2px solid #000;
+		margin-bottom: 0.5em;
+	}
+
+	#search-section #text-container .crime-panel h2 {
+		margin: 0;
+		font-size: 1em;
+		text-align: left;
+		line-height: 30px;
+		text-indent: 0.25em;
+		background-color:#000;
+		color:#fff;
+	}
+
+	#search-section #text-container .crime-panel p {
+		text-indent: 0.25em;
+		font-size:0.9em;
+
+	}
+
+	.mapboxgl-popup {
+		max-width: 200px;
+	}
+
+	.mapboxgl-popup-content {
+		text-align: center;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.mapboxgl-marker:hover {
+		cursor: pointer;
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 800px) {
+	h3{
+		margin:0;
+		line-height:50px;
+		text-indent:0.25em;
+	}
+
+	h4#area-header{
+		margin:0;
+		padding:0%;
+		line-height:50px;
+	}
+
+	main#container {
+		padding: 0.5em;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: 60px repeat(5, 1fr);
+		grid-column-gap: 0.5em;
+		grid-row-gap: 0px;
+		height: 100vh;
+	}
+
+	main#container header#main-header {
+		grid-area: 1 / 1 / 2 / 7;
+	}
+
+	main#container header#main-header h1 {
+		font-size: 1.3em;
+		line-height: 60px;
+		margin: 0;
+	}
+
+	#loader {
+		visibility: visible;
+		opacity: 1;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		transition: visibility 0ms linear, opacity 400ms linear;
+	}
+
+	#loader::before {
+		animation: 2s linear infinite spin;
+		border: solid 3px #eee;
+		border-bottom-color: #02fa55;
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transform-origin: center;
+		will-change: transform;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+
+		100% {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+
+	/* text elements for screen reader only */
+	.sr-only {
+		opacity: 0;
+		position: absolute;
+	}
+
+	.fade-out {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	#map {
+		grid-area: 2 / 1 / 5 / 7;
+		width: 100%;
+		height: 54vh;
+	}
+
+	#search-section {
+		grid-area: 5 / 1 / 7 / 7;
+		margin: 0;
+		width: 100%;
+		display: flex;
+		flex-flow: column;
+	}
+
+	#search-section h3 {
+		font-size: 1.2em;
+	}
+
+	#search-section #select-box {
+		margin: 0;
+		width: 100%;
+		height: 100px;
+		display: block;
+	}
+
+	#search-section #select-box > label {
+		display:block;
+		line-height:50px;
+		background-color:#000;
+		color:#fff;
+		font-weight:bold;
+		font-size:1.1em;
+		text-indent:0.25em;
+
+	}
+
+	#search-section form#select-box select#crimes {
+		margin: 0;
+		width: 100%;
+		height: 40px;
+		font-size: 0.9rem;
+	}
+
+	#search-section form#select-box select#crimes option {
+		font-size: 0.9rem;
+		line-height: 35px;
+		height: 35px;
+	}
+
+	#search-section #text-container {
+		display: block;
+		width: 100%;
+		padding: 0;
+	}
+
+	#search-section #text-container .crime-panel {
+		height: auto;
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 99%;
+		border: 2px solid #000;
+		margin-bottom: 0.5em;
+	}
+
+	#search-section #text-container .crime-panel h2 {
+		margin: 0;
+		font-size: 1.1em;
+		text-align: left;
+		line-height: 35px;
+		text-indent: 0.25em;
+		background-color:#000;
+		color:#fff;
+	}
+
+	#search-section #text-container .crime-panel p {
+		text-indent: 0.25em;
+	}
+
+	.mapboxgl-popup {
+		max-width: 200px;
+	}
+
+	.mapboxgl-popup-content {
+		text-align: center;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.mapboxgl-marker:hover {
+		cursor: pointer;
+	}
+}
+
+@media screen and (min-width: 361px) and (max-width: 480px) {
+	h3{
+		margin:0;
+		line-height:50px;
+		text-indent:0.25em;
+	}
+
+	h4#area-header{
+		margin:0;
+		padding:0%;
+		line-height:30px;
+	}
+
+	main#container {
+		padding: 0.5em;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: 60px repeat(5, 1fr);
+		grid-column-gap: 0.5em;
+		grid-row-gap: 0px;
+	}
+
+	main#container header#main-header {
+		grid-area: 1 / 1 / 2 / 7;
+	}
+
+	main#container header#main-header h1 {
+		font-size: 1em;
+		line-height: 60px;
+		margin: 0;
+	}
+
+	#loader {
+		visibility: visible;
+		opacity: 1;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		transition: visibility 0ms linear, opacity 400ms linear;
+	}
+
+	#loader::before {
+		animation: 2s linear infinite spin;
+		border: solid 3px #eee;
+		border-bottom-color: #02fa55;
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transform-origin: center;
+		will-change: transform;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+
+		100% {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+
+	/* text elements for screen reader only */
+	.sr-only {
+		opacity: 0;
+		position: absolute;
+	}
+
+	.fade-out {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	#map {
+		grid-area: 2 / 1 / 5 / 7;
+		width: 100%;
+		height: 54vh;
+	}
+
+	#search-section {
+		grid-area: 5 / 1 / 7 / 7;
+		margin: 0;
+		width: 100%;
+		display: flex;
+		flex-flow: column;
+	}
+
+	#search-section h3 {
+		font-size: 1em;
+	}
+
+	#search-section #select-box {
+		margin: 0;
+		width: 100%;
+		height: 100px;
+		display: block;
+	}
+
+	#search-section #select-box > label {
+		display:block;
+		line-height:30px;
+		background-color:#000;
+		color:#fff;
+		font-weight:bold;
+		font-size:1em;
+		text-indent:0.25em;
+
+	}
+
+	#search-section form#select-box select#crimes {
+		margin: 0;
+		width: 100%;
+		height: 40px;
+		font-size: 0.9rem;
+	}
+
+	#search-section form#select-box select#crimes option {
+		font-size: 0.9rem;
+		line-height: 35px;
+		height: 35px;
+	}
+
+	#search-section #text-container {
+		display: block;
+		width: 100%;
+		padding: 0;
+	}
+
+	#search-section #text-container .crime-panel {
+		height: auto;
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 99%;
+		border: 2px solid #000;
+		margin-bottom: 0.5em;
+	}
+
+	#search-section #text-container .crime-panel h2 {
+		margin: 0;
+		font-size: 1.1em;
+		text-align: left;
+		line-height: 35px;
+		text-indent: 0.25em;
+		background-color:#000;
+		color:#fff;
+	}
+
+	#search-section #text-container .crime-panel p {
+		text-indent: 0.25em;
+	}
+
+	.mapboxgl-popup {
+		max-width: 200px;
+	}
+
+	.mapboxgl-popup-content {
+		text-align: center;
+		font-family: "Open Sans", sans-serif;
+	}
+
+	.mapboxgl-marker:hover {
+		cursor: pointer;
+	}
 }
