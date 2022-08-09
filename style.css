@@ -186,6 +186,30 @@ main#container header#main-header h1 {
 	cursor: pointer;
 }
 
+.mapboxgl-popup-close-button {
+
+	font-weight:bold;
+	background-color: var(--title-bg-color);
+	color: var(--title-bg-color);
+}
+
+.mapboxgl-popup-content{
+	padding: 15px 15px 20px;
+}
+
+.mapboxgl-popup-content h3 {
+	line-height:30px;
+	color: var(--title-bg-color);
+	background-color: var(--title-text-color);
+	border-bottom:4px solid var(--title-bg-color);
+}
+
+.mapboxgl-popup-content p{
+
+	font-size:1em;
+	font-weight:bold;
+}
+
 @media screen and (min-width: 1024px) {
 
 	h3{

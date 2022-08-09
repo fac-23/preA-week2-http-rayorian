@@ -33,7 +33,7 @@ const runMap = () => {
 					style: "mapbox://styles/mapbox/streets-v11",
 					center: [`${lon}`, `${lat}`],
 					zoom: 13,
-					scrollZoom: false,
+					scrollZoom: true,
 				});
 
 				// police api request data object
