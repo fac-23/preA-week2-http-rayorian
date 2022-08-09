@@ -1,3 +1,8 @@
+:root {
+  --title-bg-color: #303841;
+  --title-text-color: #fff;
+}
+
 body {
 	color: #333;
 	margin: 0;
@@ -107,7 +112,7 @@ main#container header#main-header h1 {
 }
 
 #search-section #select-box {
-	margin: 0;
+	margin: 0 0 0.5em 0;
 	width: 100%;
 	height: 100px;
 	display: block;
@@ -116,11 +121,11 @@ main#container header#main-header h1 {
 #search-section #select-box > label {
 	display:block;
 	line-height:50px;
-	background-color:#000;
-	color:#fff;
-	font-weight:bold;
 	font-size:1em;
+	font-weight:bold;
 	text-indent:0.25em;
+	background-color:var(--title-bg-color);
+	color:var(--title-text-color);
 
 }
 
@@ -149,7 +154,7 @@ main#container header#main-header h1 {
 	margin: 0;
 	padding: 0;
 	width: 99%;
-	border: 2px solid #000;
+	border: 2px solid var(--title-bg-color);
 	margin-bottom: 0.5em;
 }
 
@@ -159,8 +164,8 @@ main#container header#main-header h1 {
 	text-align: left;
 	line-height: 35px;
 	text-indent: 0.25em;
-	background-color:#000;
-	color:#fff;
+	background-color:var(--title-bg-color);
+	color:var(--title-text-color);
 }
 
 #search-section #text-container .crime-panel p {
@@ -218,25 +223,12 @@ main#container header#main-header h1 {
 		visibility: visible;
 		opacity: 1;
 		position: relative;
-		height: 100%;
-		width: 100%;
 		transition: visibility 0ms linear, opacity 400ms linear;
 	}
 
 	#loader::before {
-		animation: 2s linear infinite spin;
-		border: solid 3px #eee;
-		border-bottom-color: #02fa55;
 		height: 40px;
 		width: 40px;
-		border-radius: 50%;
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		transform-origin: center;
-		will-change: transform;
 	}
 
 	@keyframes spin {
@@ -279,7 +271,6 @@ main#container header#main-header h1 {
 	}
 
 	#search-section #select-box {
-		margin: 0;
 		width: 100%;
 		height: 100px;
 		display: block;
@@ -288,25 +279,17 @@ main#container header#main-header h1 {
 	#search-section #select-box > label {
 		display:block;
 		line-height:50px;
-		background-color:#000;
-		color:#fff;
-		font-weight:bold;
-		font-size:1.1em;
+		font-size:1em;
 		text-indent:0.25em;
 
 	}
 
 	#search-section form#select-box select#crimes {
-		margin: 0;
-		width: 100%;
-		height: 40px;
 		font-size: 0.9rem;
 	}
 
 	#search-section form#select-box select#crimes option {
 		font-size: 0.9rem;
-		line-height: 35px;
-		height: 35px;
 	}
 
 	#search-section #text-container {
@@ -317,27 +300,20 @@ main#container header#main-header h1 {
 
 	#search-section #text-container .crime-panel {
 		height: auto;
-		display: block;
-		margin: 0;
-		padding: 0;
 		width: 99%;
-		border: 2px solid #000;
 		margin-bottom: 0.5em;
 	}
 
 	#search-section #text-container .crime-panel h2 {
-		margin: 0;
 		font-size: 1.15em;
-		text-align: left;
 		line-height: 35px;
-		text-indent: 0.25em;
-		background-color:#000;
-		color:#fff;
 	}
 
 	#search-section #text-container .crime-panel p {
 		text-indent: 0.25em;
 		font-size:0.9em;
+		margin: 0;
+    line-height: 25px;
 	}
 
 	.mapboxgl-popup {
@@ -392,25 +368,14 @@ main#container header#main-header h1 {
 		visibility: visible;
 		opacity: 1;
 		position: relative;
-		height: 100%;
-		width: 100%;
 		transition: visibility 0ms linear, opacity 400ms linear;
 	}
 
 	#loader::before {
-		animation: 2s linear infinite spin;
-		border: solid 3px #eee;
-		border-bottom-color: #02fa55;
+
 		height: 40px;
 		width: 40px;
-		border-radius: 50%;
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		transform-origin: center;
-		will-change: transform;
+
 	}
 
 	@keyframes spin {
@@ -450,10 +415,10 @@ main#container header#main-header h1 {
 
 	#search-section h3 {
 		font-size: 1em;
+		line-height:45px;
 	}
 
 	#search-section #select-box {
-		margin: 0;
 		width: 100%;
 		height: 100px;
 		display: block;
@@ -461,26 +426,16 @@ main#container header#main-header h1 {
 
 	#search-section #select-box > label {
 		display:block;
-		line-height:50px;
-		background-color:#000;
-		color:#fff;
-		font-weight:bold;
+		line-height:40px;
 		font-size:1em;
-		text-indent:0.25em;
-
 	}
 
 	#search-section form#select-box select#crimes {
-		margin: 0;
-		width: 100%;
-		height: 40px;
 		font-size: 0.9rem;
 	}
 
 	#search-section form#select-box select#crimes option {
 		font-size: 0.9rem;
-		line-height: 35px;
-		height: 35px;
 	}
 
 	#search-section #text-container {
@@ -492,26 +447,20 @@ main#container header#main-header h1 {
 	#search-section #text-container .crime-panel {
 		height: auto;
 		display: block;
-		margin: 0;
-		padding: 0;
 		width: 99%;
-		border: 2px solid #000;
 		margin-bottom: 0.5em;
 	}
 
 	#search-section #text-container .crime-panel h2 {
-		margin: 0;
 		font-size: 1em;
-		text-align: left;
 		line-height: 30px;
-		text-indent: 0.25em;
-		background-color:#000;
-		color:#fff;
 	}
 
 	#search-section #text-container .crime-panel p {
 		text-indent: 0.25em;
 		font-size:0.9em;
+		margin: 0;
+    line-height: 25px;
 
 	}
 
@@ -539,7 +488,7 @@ main#container header#main-header h1 {
 	h4#area-header{
 		margin:0;
 		padding:0%;
-		line-height:50px;
+		line-height:30px;
 	}
 
 	main#container {
@@ -566,25 +515,14 @@ main#container header#main-header h1 {
 		visibility: visible;
 		opacity: 1;
 		position: relative;
-		height: 100%;
-		width: 100%;
 		transition: visibility 0ms linear, opacity 400ms linear;
 	}
 
 	#loader::before {
-		animation: 2s linear infinite spin;
-		border: solid 3px #eee;
-		border-bottom-color: #02fa55;
+
 		height: 40px;
 		width: 40px;
-		border-radius: 50%;
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		transform-origin: center;
-		will-change: transform;
+
 	}
 
 	@keyframes spin {
@@ -623,38 +561,27 @@ main#container header#main-header h1 {
 	}
 
 	#search-section h3 {
-		font-size: 1.2em;
+		font-size: 1.1em;
+		line-height:40px;
 	}
 
 	#search-section #select-box {
-		margin: 0;
 		width: 100%;
 		height: 100px;
 		display: block;
 	}
 
 	#search-section #select-box > label {
-		display:block;
-		line-height:50px;
-		background-color:#000;
-		color:#fff;
-		font-weight:bold;
-		font-size:1.1em;
-		text-indent:0.25em;
-
+		line-height:40px;
+		font-size:1em;
 	}
 
 	#search-section form#select-box select#crimes {
-		margin: 0;
-		width: 100%;
-		height: 40px;
 		font-size: 0.9rem;
 	}
 
 	#search-section form#select-box select#crimes option {
 		font-size: 0.9rem;
-		line-height: 35px;
-		height: 35px;
 	}
 
 	#search-section #text-container {
@@ -664,23 +591,12 @@ main#container header#main-header h1 {
 	}
 
 	#search-section #text-container .crime-panel {
-		height: auto;
-		display: block;
-		margin: 0;
-		padding: 0;
 		width: 99%;
-		border: 2px solid #000;
-		margin-bottom: 0.5em;
 	}
 
 	#search-section #text-container .crime-panel h2 {
-		margin: 0;
-		font-size: 1.1em;
-		text-align: left;
+		font-size: 1em;
 		line-height: 35px;
-		text-indent: 0.25em;
-		background-color:#000;
-		color:#fff;
 	}
 
 	#search-section #text-container .crime-panel p {
@@ -737,25 +653,14 @@ main#container header#main-header h1 {
 		visibility: visible;
 		opacity: 1;
 		position: relative;
-		height: 100%;
-		width: 100%;
 		transition: visibility 0ms linear, opacity 400ms linear;
 	}
 
 	#loader::before {
-		animation: 2s linear infinite spin;
-		border: solid 3px #eee;
-		border-bottom-color: #02fa55;
+
 		height: 40px;
 		width: 40px;
-		border-radius: 50%;
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		transform-origin: center;
-		will-change: transform;
+
 	}
 
 	@keyframes spin {
@@ -798,7 +703,6 @@ main#container header#main-header h1 {
 	}
 
 	#search-section #select-box {
-		margin: 0;
 		width: 100%;
 		height: 100px;
 		display: block;
@@ -807,25 +711,16 @@ main#container header#main-header h1 {
 	#search-section #select-box > label {
 		display:block;
 		line-height:30px;
-		background-color:#000;
-		color:#fff;
-		font-weight:bold;
 		font-size:1em;
 		text-indent:0.25em;
-
 	}
 
 	#search-section form#select-box select#crimes {
-		margin: 0;
-		width: 100%;
-		height: 40px;
 		font-size: 0.9rem;
 	}
 
 	#search-section form#select-box select#crimes option {
 		font-size: 0.9rem;
-		line-height: 35px;
-		height: 35px;
 	}
 
 	#search-section #text-container {
@@ -840,18 +735,13 @@ main#container header#main-header h1 {
 		margin: 0;
 		padding: 0;
 		width: 99%;
-		border: 2px solid #000;
+
 		margin-bottom: 0.5em;
 	}
 
 	#search-section #text-container .crime-panel h2 {
-		margin: 0;
 		font-size: 1.1em;
-		text-align: left;
 		line-height: 35px;
-		text-indent: 0.25em;
-		background-color:#000;
-		color:#fff;
 	}
 
 	#search-section #text-container .crime-panel p {

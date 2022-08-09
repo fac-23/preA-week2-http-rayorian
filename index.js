@@ -32,7 +32,8 @@ const runMap = () => {
 					container: "map",
 					style: "mapbox://styles/mapbox/streets-v11",
 					center: [`${lon}`, `${lat}`],
-					zoom: 15,
+					zoom: 13,
+					scrollZoom: false,
 				});
 
 				// police api request data object
@@ -73,9 +74,11 @@ const runMap = () => {
 						const { features } = { ...mapData };
 						const [data] = [...features];
 						// eslint-disable-next-line camelcase
-						const { place_name } = { ...data };
+						const { text } = { ...data };
+						// eslint-disable-next-line no-console
+						console.log(data);
 						// eslint-disable-next-line camelcase
-						area.innerHTML = place_name;
+						area.innerHTML = text;
 
 						// event listener for crime select element
 						select.addEventListener("change", (event) => {
@@ -99,7 +102,7 @@ const runMap = () => {
 							// eslint-disable-next-line no-plusplus
 							for (let i = 0; i < policeData.length; i++) {
 								// eslint-disable-next-line no-console
-								console.log(policeData[i]);
+								// console.log(policeData[i]);
 								// compare event target value to police api category value
 								// if true create elements to display data
 								if (event.target.value === policeData[i].category) {
@@ -140,7 +143,7 @@ const runMap = () => {
 									container.appendChild(panel);
 
 									// set a fixed height to text container and set overflow to scroll to hide overflow of the large amount of text returned from api and add a vertical scroll bar to enable scrolling.
-									container.style.height = "680px";
+									container.style.height = "100vh";
 									container.style.overflow = "scroll";
 
 									// add markers and pop ups showing details of crime
