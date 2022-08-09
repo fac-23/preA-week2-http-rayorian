@@ -1,0 +1,45 @@
+{
+  "name": "pre-testing-rayorian",
+  "version": "1.0.0",
+  "description": "Todo List",
+  "main": "index.js",
+	"type": "module",
+	"browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "scripts": {
+    "build": "babel index.js -d dist",
+    "start": "npx nodemon --exec npx babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac-23/preA-week2-http-rayorian"
+  },
+  "keywords": [
+    "map",
+    "crime checker"
+  ],
+  "author": "raymond thompson &  orian paled",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fac-23/preA-week2-http-rayorian/issues"
+  },
+  "homepage": "https://github.com/fac-23/preA-week2-http-rayorian#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "eslint": "^8.21.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1"
+  },
+  "dependencies": {
+    "@babel/eslint-parser": "^7.18.9",
+    "dotenv": "^16.0.1"
+  }
+}
