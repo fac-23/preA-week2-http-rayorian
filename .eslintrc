@@ -46,7 +46,7 @@
       ],
       "prettier/prettier": "error",
       "strict" : ["error","global"],
-      "prefer-destructuring":["error",{"array":true, "object":true},{"enforceForRenamedProperties":true}],
+      "prefer-destructuring":["error",{"array":true, "object":true},{"enforceForRenamedProperties":false}],
       "new-cap": "error",
       "no-invalid-this": "error",
       "prefer-const":"error",
