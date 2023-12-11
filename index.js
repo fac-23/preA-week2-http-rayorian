@@ -18,9 +18,10 @@ const runMap = () => {
 
 			const currentMarkers = [];
 			// sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
-			
 			// eslint-disable-next-line no-undef
-			mapboxgl.accessToken = process.env.API_KEY;
+			mapboxgl.accessToken = `sk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJjbHExYXprdXowNmdmMmtudTVma2J4eWNwIn0.khBGGPmw0P4mg60KOOY4Lg`;
+			// eslint-disable-next-line no-undef
+			// mapboxgl.accessToken = process.env.API_KEY;
 
 			// eslint-disable-next-line no-undef
 			const map = new mapboxgl.Map({
