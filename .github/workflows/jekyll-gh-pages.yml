@@ -34,12 +34,7 @@ jobs:
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
-          destination: ./_site
-      - name: Hello world action
-        with: # Set the secret as an input
-          super_secret: ${{ secrets.API_KEY }}
-        env: # Or as an environment variable
-          super_secret: ${{ secrets.API_KEY }}
+          destination: ./_site      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
 
