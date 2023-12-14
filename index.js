@@ -21,7 +21,7 @@ const runMap = () => {
 			// eslint-disable-next-line no-undef
 			// mapboxgl.accessToken = `pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJjbHExYXNteWYwN2l1MnJwa3NvMGg0Mng5In0.tOZS7_ScVbmla4rwg0VTxA`;
 			// eslint-disable-next-line no-undef
-			mapboxgl.accessToken = process.env.API_KEY;
+			mapboxgl.accessToken = site.github.API_KEY;
 
 			// eslint-disable-next-line no-undef
 			const map = new mapboxgl.Map({
