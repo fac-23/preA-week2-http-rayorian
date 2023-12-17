@@ -5,23 +5,17 @@
 	<meta charset="utf-8">
 	<title>Crime checker</title>
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
-	<style>
 
-	</style>
 </head>
 
-<body>
-	<script
-		src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
-	<link rel="stylesheet"
-		href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
+
 
 	<main id="container">
 		<header id="main-header">
-			<h1>Crime Checker - Check the crime in your area</h1>
+			<h1>{{ title }}</h1>
 		</header>
 		<div id="map">
 			<p class="sr-only">Loading map</p>
@@ -57,8 +51,6 @@
 
 	</main>
 
-	<script src="index.js"></script>
-
-</body>
-
-</html>
+<script>
+console.log(mapboxgl)
+</script>

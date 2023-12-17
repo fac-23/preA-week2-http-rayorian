@@ -68,7 +68,8 @@
       "no-implied-eval":"error",
       "eqeqeq":"error",
       "no-with":"error",
-      "no-plusplus":"error"
+      "no-plusplus":"error",
+			"import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
   },
   "settings": {
     "react": {
