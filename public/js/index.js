@@ -1,5 +1,21 @@
-const runMap = () => {
+
+// const logMovies = async () => {
+//   const response = await fetch("http://localhost:3000/api-key");
+//   const movies = await response.json();
+//  // console.log(movies);
+// 	return movies;
+// }
+
+// console.log(logMovies())
+
+
+const runMap = async () => {
+
+	const response = await fetch("/api-key");
+  const map_key = await response.json();
+
 	if (navigator.geolocation) {
+
 		navigator.geolocation.getCurrentPosition((position) => {
 			const { latitude: lat } = position.coords;
 			const { longitude: lon } = position.coords;
@@ -17,7 +33,8 @@ const runMap = () => {
 			const currentMarkers = [];
 			// sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
 			// eslint-disable-next-line no-undef
-			mapboxgl.accessToken = `pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJjbHE5cjh5aWYxYmQ1MmpzOWZvMGZ2ZnE1In0.8wI_iaJYe_urI-9vl3Vctg`;
+			mapboxgl.accessToken = `${map_key.api_key}`;
+
 			// eslint-disable-next-line no-undef
 			// mapboxgl.accessToken = process.env.API_KEY;
 

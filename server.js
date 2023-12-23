@@ -11,7 +11,9 @@ const dirname = path.dirname(filename);
 const app = express();
 const port = process.env.port || 3000;
 
-// app.use(cors());
+// app.use(cors({
+// 	origin: '*'
+// }))
 
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars")
@@ -25,7 +27,13 @@ app.use("/", express.static("public"));
 // });
 
 app.get("/", (req, res) => {
-	res.render('home', {title: "Crime Checker - Check the crime in your area"});
+	res.render('home', {
+		title: "Crime Checker - Check the crime in your area",
+	});
+});
+
+app.get("/api-key", (req, res) => {
+	res.send({api_key: process.env.API_KEY });
 });
 
 app.listen(port);
