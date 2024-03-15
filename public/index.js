@@ -1,21 +1,8 @@
-
-// const logMovies = async () => {
-//   const response = await fetch("http://localhost:3000/api-key");
-//   const movies = await response.json();
-//  // console.log(movies);
-// 	return movies;
-// }
-
-// console.log(logMovies())
-
-
 const runMap = async () => {
-
 	const response = await fetch("/api-key");
-  const map_key = await response.json();
+	const map_key = await response.json();
 
 	if (navigator.geolocation) {
-
 		navigator.geolocation.getCurrentPosition((position) => {
 			const { latitude: lat } = position.coords;
 			const { longitude: lon } = position.coords;
@@ -185,5 +172,3 @@ const runMap = async () => {
 };
 
 runMap();
-
-
