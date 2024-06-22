@@ -1,31 +1,32 @@
-// const dot = dotenv.config({ path: ".env" });
+import data from "./gb.js";
 
 const runMap = () => {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition((position) => {
-			const { latitude: lat } = position.coords;
-			const { longitude: lon } = position.coords;
+	if (!mapboxgl.supported()) {
+		console.log("Your browser does not support Mapbox GL");
+	}
 
+	// Sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
+	mapboxgl.accessToken =
+		"pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJjbHE5cjh5aWYxYmQ1MmpzOWZvMGZ2ZnE1In0.8wI_iaJYe_urI-9vl3Vctg";
+
+	const { geolocation } = navigator;
+
+	if (geolocation) {
+		geolocation.getCurrentPosition((position) => {
+			// user coordinates
+
+			let { latitude: lat } = position.coords;
+			let { longitude: lon } = position.coords;
+
+			console.log(lat, lon);
+
+			// crime data container
 			const container = document.querySelector("#text-container");
+			// select elemet
 			const select = document.getElementById("crimes");
 
-			// if browser does not support map box.
-			// eslint-disable-next-line no-undef
-			if (!mapboxgl.supported()) {
-				// eslint-disable-next-line no-console
-				console.log("Your browser does not support Mapbox GL");
-			}
-
 			const currentMarkers = [];
-			// sign up for account at mapbox to get secret key and public key to test. https://docs.mapbox.com/help/getting-started/
-			// eslint-disable-next-line no-undef
-			mapboxgl.accessToken =
-				"pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJjbHNodDBna2ExMmFuMmxvdWI2MTkyN25oIn0.Lg5ggPjT5EUhMMBe7J-0eg";
 
-			// eslint-disable-next-line no-undef
-			// mapboxgl.accessToken = process.env.API_KEY;
-
-			// eslint-disable-next-line no-undef
 			const map = new mapboxgl.Map({
 				container: "map",
 				style: "mapbox://styles/mapbox/streets-v11",
@@ -35,121 +36,128 @@ const runMap = () => {
 			});
 
 			const fetchData = async () => {
-				// use try catch block
 				try {
-					// get map data and police api data using promise all to return each result as element in an array
+					// Get map data and police api data using promise all to return each result as element in an array
 					const resultData = await Promise.all([
 						fetch(
-							// eslint-disable-next-line no-undef
 							`https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?&access_token=${mapboxgl.accessToken}`
 						),
 						fetch(
 							`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lon}&date=2023-10`
 						),
 					]);
-
-					// return pending map data and police api data as json
+					// Return pending map data and police api data as json
 					const data = await Promise.all(resultData.map((ele) => ele.json()));
 
 					const [mapData, policeData] = [...data];
-					// remove mapbox api data and retuurn just police api data
-					// const policeData = data.at(-1);
-
-					// hide loader notice
+					// Hide loader notice
 					const loader = document.querySelector("#loader");
 					loader.classList.add("fade-out");
+					// find crime in area header
 					const area = document.querySelector("#area-header");
-
+					// deconstrcut map object to get information
 					const { features } = { ...mapData };
 					const [dataObj] = [...features];
 					const { context } = { ...dataObj };
 					const [postcode, locality, place, district, ,] = [...context];
+
+					// find crime in area header text
 					area.textContent = `${locality.text}, ${place.text}, ${district.text}, ${postcode.text} `;
 
-					// event listener for crime select element
+					// find selected crime committed by category
 					select.addEventListener("change", (event) => {
 						event.preventDefault();
-						// get all elements created if they already exist
+
 						const list = document.getElementsByClassName("crime-panel");
 
-						// if elements exists remove them to make space for new elements.
+						// If elements exists remove them to make space for new elements.
 						if (list) {
 							Array.from(list).forEach((e) => e.remove());
 						}
 
-						// if markers exist remove markers from array to make space for new markers
+						// If markers exist remove markers from array to make space for new markers
 						if (currentMarkers !== null) {
-							// eslint-disable-next-line no-plusplus
 							for (let i = currentMarkers.length - 1; i >= 0; i--) {
 								currentMarkers[i].remove();
 							}
 						}
 
-						// loop over police data
-						// eslint-disable-next-line no-plusplus
+						// Iterate over police data
 						for (let i = 0; i < policeData.length; i++) {
-							// compare event target value to police api category value
-
-							// if true create elements to display data
+							// if selected value matches police crime data category, create section
+							// to show details
 							if (event.target.value === policeData[i].category) {
 								const panel = document.createElement("SECTION");
 								panel.setAttribute("class", "crime-panel");
 								const title = document.createElement("H2");
 								title.setAttribute("class", "title");
 
-								// capitalise first letter of category
-								title.textContent =
-									policeData[i].category.charAt(0).toUpperCase() +
-									policeData[i].category.slice(1).replace(/-+/g, " ");
+								// if any crime data found in crime category
+								if (policeData[i].outcome_status !== null) {
+									// Capitalise first letter of crime category
+									title.textContent =
+										policeData[i].category.charAt(0).toUpperCase() +
+										policeData[i].category.slice(1).replace(/-+/g, " ");
 
-								const crimeDate = document.createElement("P");
-								crimeDate.textContent = new Date(
-									policeData[i].month
-								).toDateString();
+									// Date of crime container
+									const crimeDate = document.createElement("P");
 
-								// crime location
-								const crimeLocation = document.createElement("P");
-								// eslint-disable-next-line prefer-destructuring
-								crimeLocation.textContent = policeData[i].location.street.name;
-								// crime location
-								const crimeOutcome = document.createElement("P");
+									// Date of crime
+									crimeDate.textContent = new Date(
+										policeData[i].month
+									).toDateString();
 
-								// eslint-disable-next-line prefer-destructuring
-								crimeOutcome.textContent =
-									policeData[i].outcome_status.category;
+									// Crime location container
+									const crimeLocation = document.createElement("P");
 
-								// append elements
-								panel.appendChild(title);
-								panel.appendChild(crimeDate);
-								panel.appendChild(crimeLocation);
-								panel.appendChild(crimeOutcome);
-								container.appendChild(panel);
+									// crime location details
+									crimeLocation.textContent =
+										policeData[i].location.street.name;
 
-								// set a fixed height to text container and set overflow to scroll to hide overflow of the large amount of text returned from api and add a vertical scroll bar to enable scrolling.
-								container.style.height = "100vh";
-								container.style.overflow = "scroll";
+									// Crime Outcome container
+									const crimeOutcome = document.createElement("P");
 
-								// add markers and pop ups showing details of crime
-								// eslint-disable-next-line no-undef
-								const marker = new mapboxgl.Marker()
-									.setLngLat([
-										`${policeData[i].location.longitude}`,
-										`${policeData[i].location.latitude}`,
-									])
-									.setPopup(
-										// eslint-disable-next-line no-undef
-										new mapboxgl.Popup({ offset: 25 }) // add popups
-											.setHTML(
-												`<h3>${policeData[i].category.replace(
-													/-/g,
-													" "
-												)}</h3><p>${policeData[i].location.street.name}</p>`
-											)
-									)
-									.addTo(map);
+									// crime outcome details
+									crimeOutcome.textContent =
+										policeData[i].outcome_status.category;
 
-								// save tmp marker into currentMarkers array
-								currentMarkers.push(marker);
+									// Append elements
+									panel.appendChild(title);
+									panel.appendChild(crimeDate);
+									panel.appendChild(crimeLocation);
+									panel.appendChild(crimeOutcome);
+									container.appendChild(panel);
+
+									// Set a fixed height to text container and set overflow to scroll to hide overflow
+									// large amount of text returned from api - vertical scroll bar added to enable scrolling.
+									container.style.height = "100vh";
+									container.style.overflow = "scroll";
+
+									// Add markers and pop ups showing crime details
+									const marker = new mapboxgl.Marker()
+										.setLngLat([
+											`${policeData[i].location.longitude}`,
+											`${policeData[i].location.latitude}`,
+										])
+										.setPopup(
+											new mapboxgl.Popup({ offset: 25 }) // Add Popups
+												.setHTML(
+													`<h3>${policeData[i].category.replace(
+														/-/g,
+														" "
+													)}</h3><p>${policeData[i].location.street.name}</p>`
+												)
+										)
+										.addTo(map);
+
+									// Save tmp marker into currentMarkers array
+									currentMarkers.push(marker);
+								} else {
+									// crime date not found
+									title.textContent = "No Crime Data Available";
+									panel.appendChild(title);
+									container.appendChild(panel);
+								}
 							}
 						}
 					});
@@ -162,9 +170,179 @@ const runMap = () => {
 				}
 			};
 			fetchData();
+
+			//select element for choosing city
+			const citySelect = document.getElementById("cities");
+
+			// add city names and coordinates to options element for select element.
+			data.forEach((city) => {
+				const options = document.createElement("OPTION");
+				options.setAttribute("value", `${city.lat},${city.lng}`);
+				options.textContent = `${city.city}`;
+				citySelect.appendChild(options);
+			});
+
+			// add evemt listener
+			citySelect.addEventListener("change", function (e) {
+				e.preventDefault();
+				// retreive lon and lat values as an array
+				let result = e.target.value.trim().split(",");
+				// assign values to variables to use in map object and fetch urls
+				const lat1 = `${result[0]}`;
+				const lon1 = `${result[1]}`;
+
+				const currentMarkers1 = [];
+
+				// new map object
+				const map1 = new mapboxgl.Map({
+					container: "map",
+					style: "mapbox://styles/mapbox/streets-v11",
+					center: [`${lon1}`, `${lat1}`],
+					zoom: 13,
+					scrollZoom: true,
+				});
+
+				const fetchDataOne = async () => {
+					try {
+						// Get map data and police api data using promise all to return each result as element in an array
+						const resultData1 = await Promise.all([
+							fetch(
+								`https://api.mapbox.com/geocoding/v5/mapbox.places/${lon1},${lat1}.json?&access_token=${mapboxgl.accessToken}`
+							),
+							fetch(
+								`https://data.police.uk/api/crimes-street/all-crime?lat=${lat1}&lng=${lon1}&date=2023-10`
+							),
+						]);
+						// Return pending map data and police api data as json
+						const data1 = await Promise.all(
+							resultData1.map((ele) => ele.json())
+						);
+
+						const [mapData1, policeData1] = [...data1];
+						// Hide loader notice
+						const loader = document.querySelector("#loader");
+						loader.classList.add("fade-out");
+						// find crime in area header
+						const area = document.querySelector("#area-header");
+						// deconstrcut map object to get information
+						const { features } = { ...mapData1 };
+						const [dataObj] = [...features];
+						const { context } = { ...dataObj };
+						const [postcode, locality, place, district, ,] = [...context];
+
+						// find crime in area header text
+						area.textContent = `${locality.text}, ${place.text}, ${district.text}, ${postcode.text} `;
+
+						// find selected crime committed by category
+						select.addEventListener("change", (event) => {
+							event.preventDefault();
+
+							const list = document.getElementsByClassName("crime-panel");
+
+							// If elements exists remove them to make space for new elements.
+							if (list) {
+								Array.from(list).forEach((e) => e.remove());
+							}
+
+							// If markers exist remove markers from array to make space for new markers
+							if (currentMarkers1 !== null) {
+								for (let i = currentMarkers1.length - 1; i >= 0; i--) {
+									currentMarkers1[i].remove();
+								}
+							}
+
+							// Iterate over police data
+							for (let i = 0; i < policeData1.length; i++) {
+								// if selected value matches police crime data category, create section
+								// to show details
+								if (event.target.value === policeData1[i].category) {
+									const panel = document.createElement("SECTION");
+									panel.setAttribute("class", "crime-panel");
+									const title = document.createElement("H2");
+									title.setAttribute("class", "title");
+
+									// if any crime data found in crime category
+									if (policeData1[i].outcome_status !== null) {
+										// Capitalise first letter of crime category
+										title.textContent =
+											policeData1[i].category.charAt(0).toUpperCase() +
+											policeData1[i].category.slice(1).replace(/-+/g, " ");
+
+										// Date of crime container
+										const crimeDate = document.createElement("P");
+
+										// Date of crime
+										crimeDate.textContent = new Date(
+											policeData1[i].month
+										).toDateString();
+
+										// Crime location container
+										const crimeLocation = document.createElement("P");
+
+										// crime location details
+										crimeLocation.textContent =
+											policeData1[i].location.street.name;
+
+										// Crime Outcome container
+										const crimeOutcome = document.createElement("P");
+
+										// crime outcome details
+										crimeOutcome.textContent =
+											policeData1[i].outcome_status.category;
+
+										// Append elements
+										panel.appendChild(title);
+										panel.appendChild(crimeDate);
+										panel.appendChild(crimeLocation);
+										panel.appendChild(crimeOutcome);
+										container.appendChild(panel);
+
+										// Set a fixed height to text container and set overflow to scroll to hide overflow
+										// large amount of text returned from api - vertical scroll bar added to enable scrolling.
+										container.style.height = "100vh";
+										container.style.overflow = "scroll";
+
+										// Add markers and pop ups showing crime details
+										const marker1 = new mapboxgl.Marker()
+											.setLngLat([
+												`${policeData1[i].location.longitude}`,
+												`${policeData1[i].location.latitude}`,
+											])
+											.setPopup(
+												new mapboxgl.Popup({ offset: 25 }) // Add Popups
+													.setHTML(
+														`<h3>${policeData1[i].category.replace(
+															/-/g,
+															" "
+														)}</h3><p>${
+															policeData1[i].location.street.name
+														}</p>`
+													)
+											)
+											.addTo(map1);
+
+										// Save tmp marker into currentMarkers array
+										currentMarkers1.push(marker1);
+									} else {
+										// crime date not found
+										title.textContent = "No Crime Data Available";
+										panel.appendChild(title);
+										container.appendChild(panel);
+									}
+								}
+							}
+						});
+
+						// Add zoom and rotation controls to the map.
+						map1.addControl(new mapboxgl.NavigationControl());
+					} catch {
+						throw Error("Promise failed");
+					}
+				};
+				fetchDataOne();
+			});
 		});
 	} else {
-		// eslint-disable-next-line no-alert
 		alert("Geolocation is not supported by this browser.");
 	}
 };

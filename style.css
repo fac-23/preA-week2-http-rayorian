@@ -39,12 +39,40 @@ main#container {
 
 main#container header#main-header {
 	grid-area: 1 / 1 / 2 / 7;
+	display:flex;
 }
 
 main#container header#main-header h1 {
 	font-size: 0.85em;
 	line-height: 40px;
 	margin: 0;
+	width:65%;
+}
+
+main#container header#main-header form{
+	width:35%;
+	display:flex;
+}
+
+main#container header#main-header form label{
+	width:20%;
+	line-height:40px;
+	height:40px;
+	display:block;
+	font-size:18px;
+}
+
+main#container header#main-header form select{
+	width:80%;
+	line-height:40px;
+	height:40px;
+	display:block;
+}
+
+main#container header#main-header form select option{
+	line-height:40px;
+	height:40px;
+
 }
 
 #loader {
@@ -241,6 +269,7 @@ main#container header#main-header h1 {
 		font-size: 1.8em;
 		line-height: 60px;
 		margin: 0;
+		width:70%;
 	}
 
 	#loader {
