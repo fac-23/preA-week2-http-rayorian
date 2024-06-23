@@ -7,8 +7,7 @@ const runMap = () => {
 		console.log("Your browser does not support Mapbox GL");
 	}
 
-	mapboxgl.accessToken =
-		"pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJjbHhxcXdmeXgwbWtkMmtxd2NoeWYxNndzIn0.kX6_lLeXXVN3SF2NPymaag";
+	mapboxgl.accessToken = "";
 
 	const { geolocation } = navigator;
 

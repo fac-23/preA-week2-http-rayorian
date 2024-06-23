@@ -1,7 +1,7 @@
 {
 	"extends": ["stylelint-config-standard"],
 	"rules": {
-		"media-feature-range-notation": "context",
+		"media-feature-range-notation": "prefix",
 		"at-rule-no-unknown": null,
 		"unit-allowed-list": ["em", "rem", "%", "px", "fr", "vh", "ms", "s", "deg"],
 		"rule-empty-line-before": null,
