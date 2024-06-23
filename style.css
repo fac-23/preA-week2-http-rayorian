@@ -1,10 +1,10 @@
 :root {
   --title-bg-color: #303841;
-  --title-text-color: #fff;
+  --title-text-color: #ffffff;
 }
 
 body {
-	color: #333;
+	color: #333333;
 	margin: 0;
 	box-sizing: border-box;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -15,64 +15,37 @@ body {
 h3{
 	margin:0;
 	line-height:50px;
-	background-color:#000;
-	color:#fff;
+	background-color:var(--title-bg-color);;
+	color:var(--title-text-color);
 	text-indent:0.25em;
 }
 
-h4#area-header{
+#area-header{
 	margin:0;
 	padding:0%;
 	line-height:30px;
 	font-size:0.9em;
 }
 
-main#container {
+#container {
 	padding: 0.5em;
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: 40px repeat(5, 1fr);
-	grid-column-gap: 0.5em;
-	grid-row-gap: 0px;
+	grid-gap: 0 0.5em;
 	height:100vh;
 }
 
-main#container header#main-header {
+#main-header {
 	grid-area: 1 / 1 / 2 / 7;
 	display:flex;
 }
 
-main#container header#main-header h1 {
+#main-header h1 {
 	font-size: 0.85em;
 	line-height: 40px;
 	margin: 0;
 	width:65%;
-}
-
-main#container header#main-header form{
-	width:35%;
-	display:flex;
-}
-
-main#container header#main-header form label{
-	width:20%;
-	line-height:40px;
-	height:40px;
-	display:block;
-	font-size:18px;
-}
-
-main#container header#main-header form select{
-	width:80%;
-	line-height:40px;
-	height:40px;
-	display:block;
-}
-
-main#container header#main-header form select option{
-	line-height:40px;
-	height:40px;
-
 }
 
 #loader {
@@ -86,7 +59,7 @@ main#container header#main-header form select option{
 
 #loader::before {
 	animation: 2s linear infinite spin;
-	border: solid 3px #eee;
+	border: solid 3px #eeeeee;
 	border-bottom-color: #02fa55;
 	height: 40px;
 	width: 40px;
@@ -127,7 +100,7 @@ main#container header#main-header form select option{
 	height: 60vh;
 }
 
-#search-section {
+.search-section {
 	grid-area: 5 / 1 / 7 / 7;
 	margin: 0;
 	width: 100%;
@@ -135,18 +108,22 @@ main#container header#main-header form select option{
 	flex-flow: column;
 }
 
-#search-section h3 {
+.search-section h2 {
 	font-size: 1em;
 }
 
-#search-section #select-box {
-	margin: 0 0 0.5em 0;
+.search-section h3 {
+	font-size: 1em;
+}
+
+.select-box {
+	margin: 0 0 0.5em;
 	width: 100%;
 	height: 100px;
 	display: block;
 }
 
-#search-section #select-box > label {
+.select-box > label {
 	display:block;
 	line-height:50px;
 	font-size:1em;
@@ -157,26 +134,27 @@ main#container header#main-header form select option{
 
 }
 
-#search-section form#select-box select#crimes {
+#crimes, #cities {
 	margin: 0;
 	width: 100%;
 	height: 40px;
 	font-size: 0.9rem;
 }
 
-#search-section form#select-box select#crimes option {
+#crimes option,
+#cities option {
 	font-size: 1rem;
 	line-height: 35px;
 	height: 35px;
 }
 
-#search-section #text-container {
+#text-container {
 	display: block;
 	width: 100%;
 	padding: 0;
 }
 
-#search-section #text-container .crime-panel {
+.crime-panel {
 	height: auto;
 	display: block;
 	margin: 0;
@@ -186,7 +164,7 @@ main#container header#main-header form select option{
 	margin-bottom: 0.5em;
 }
 
-#search-section #text-container .crime-panel h2 {
+.crime-panel h2 {
 	margin: 0;
 	font-size: 1em;
 	text-align: left;
@@ -196,7 +174,7 @@ main#container header#main-header form select option{
 	color:var(--title-text-color);
 }
 
-#search-section #text-container .crime-panel p {
+.crime-panel p {
 	text-indent: 0.25em;
 	font-size:0.85em;
 }
@@ -208,6 +186,7 @@ main#container header#main-header form select option{
 .mapboxgl-popup-content {
 	text-align: center;
 	font-family: "Open Sans", sans-serif;
+	padding: 15px 15px 20px;
 }
 
 .mapboxgl-marker:hover {
@@ -215,14 +194,9 @@ main#container header#main-header form select option{
 }
 
 .mapboxgl-popup-close-button {
-
 	font-weight:bold;
 	background-color: var(--title-bg-color);
 	color: var(--title-bg-color);
-}
-
-.mapboxgl-popup-content{
-	padding: 15px 15px 20px;
 }
 
 .mapboxgl-popup-content h3 {
@@ -246,13 +220,13 @@ main#container header#main-header form select option{
 		text-indent:0.25em;
 	}
 
-	h4#area-header{
+	#area-header{
 		margin:0;
 		padding:0%;
 		line-height:40px;
 	}
 
-	main#container {
+	#container {
 		padding: 0.5em;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
@@ -261,11 +235,11 @@ main#container header#main-header form select option{
 		grid-row-gap: 0px;
 	}
 
-	main#container header#main-header {
+	#main-header {
 		grid-area: 1 / 1 / 2 / 7;
 	}
 
-	main#container header#main-header h1 {
+	#main-header h1 {
 		font-size: 1.8em;
 		line-height: 60px;
 		margin: 0;
@@ -323,13 +297,13 @@ main#container header#main-header form select option{
 		font-size: 1.2em;
 	}
 
-	#search-section #select-box {
+	#select-box {
 		width: 100%;
 		height: 100px;
 		display: block;
 	}
 
-	#search-section #select-box > label {
+	#select-box > label {
 		display:block;
 		line-height:50px;
 		font-size:1em;
@@ -337,32 +311,33 @@ main#container header#main-header form select option{
 
 	}
 
-	#search-section form#select-box select#crimes {
+	#crimes, #cities {
 		font-size: 0.9rem;
 	}
 
-	#search-section form#select-box select#crimes option {
+	#crimes option,
+	#cities option {
 		font-size: 0.9rem;
 	}
 
-	#search-section #text-container {
+	#text-container {
 		display: block;
 		width: 100%;
 		padding: 0;
 	}
 
-	#search-section #text-container .crime-panel {
+	.crime-panel {
 		height: auto;
 		width: 99%;
 		margin-bottom: 0.5em;
 	}
 
-	#search-section #text-container .crime-panel h2 {
+	.crime-panel h2 {
 		font-size: 1.15em;
 		line-height: 35px;
 	}
 
-	#search-section #text-container .crime-panel p {
+	.crime-panel p {
 		text-indent: 0.25em;
 		font-size:0.9em;
 		margin: 0;
@@ -390,14 +365,14 @@ main#container header#main-header form select option{
 		text-indent:0.25em;
 	}
 
-	h4#area-header{
+	#area-header{
 		margin:0;
 		padding:0%;
 		line-height:30px;
 		font-size:0.9em;
 	}
 
-	main#container {
+	#container {
 		padding: 0.5em;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
@@ -407,11 +382,11 @@ main#container header#main-header form select option{
 		height:100vh;
 	}
 
-	main#container header#main-header {
+	#main-header {
 		grid-area: 1 / 1 / 2 / 7;
 	}
 
-	main#container header#main-header h1 {
+	#main-header h1 {
 		font-size: 1.4em;
 		line-height: 60px;
 		margin: 0;
@@ -471,45 +446,46 @@ main#container header#main-header form select option{
 		line-height:45px;
 	}
 
-	#search-section #select-box {
+	#select-box {
 		width: 100%;
 		height: 100px;
 		display: block;
 	}
 
-	#search-section #select-box > label {
+	#select-box > label {
 		display:block;
 		line-height:40px;
 		font-size:1em;
 	}
 
-	#search-section form#select-box select#crimes {
+	#cities, #crimes {
 		font-size: 0.9rem;
 	}
 
-	#search-section form#select-box select#crimes option {
+	#crimes option,
+	#cities option {
 		font-size: 0.9rem;
 	}
 
-	#search-section #text-container {
+	#text-container {
 		display: block;
 		width: 100%;
 		padding: 0;
 	}
 
-	#search-section #text-container .crime-panel {
+	.crime-panel {
 		height: auto;
 		display: block;
 		width: 99%;
 		margin-bottom: 0.5em;
 	}
 
-	#search-section #text-container .crime-panel h2 {
+	.crime-panel h2 {
 		font-size: 1em;
 		line-height: 30px;
 	}
 
-	#search-section #text-container .crime-panel p {
+	.crime-panel p {
 		text-indent: 0.25em;
 		font-size:0.9em;
 		margin: 0;
@@ -538,13 +514,13 @@ main#container header#main-header form select option{
 		text-indent:0.25em;
 	}
 
-	h4#area-header{
+	#area-header{
 		margin:0;
 		padding:0%;
 		line-height:30px;
 	}
 
-	main#container {
+	#container {
 		padding: 0.5em;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
@@ -554,11 +530,11 @@ main#container header#main-header form select option{
 		height: 100vh;
 	}
 
-	main#container header#main-header {
+	#main-header {
 		grid-area: 1 / 1 / 2 / 7;
 	}
 
-	main#container header#main-header h1 {
+	#main-header h1 {
 		font-size: 1.3em;
 		line-height: 60px;
 		margin: 0;
@@ -618,41 +594,42 @@ main#container header#main-header form select option{
 		line-height:40px;
 	}
 
-	#search-section #select-box {
+	#select-box {
 		width: 100%;
 		height: 100px;
 		display: block;
 	}
 
-	#search-section #select-box > label {
+	#select-box > label {
 		line-height:40px;
 		font-size:1em;
 	}
 
-	#search-section form#select-box select#crimes {
+	#crimes, #cities {
 		font-size: 0.9rem;
 	}
 
-	#search-section form#select-box select#crimes option {
+	#crimes option,
+	#cities option {
 		font-size: 0.9rem;
 	}
 
-	#search-section #text-container {
+	#text-container {
 		display: block;
 		width: 100%;
 		padding: 0;
 	}
 
-	#search-section #text-container .crime-panel {
+	.crime-panel {
 		width: 99%;
 	}
 
-	#search-section #text-container .crime-panel h2 {
+	.crime-panel h2 {
 		font-size: 1em;
 		line-height: 35px;
 	}
 
-	#search-section #text-container .crime-panel p {
+	.crime-panel p {
 		text-indent: 0.25em;
 	}
 
@@ -677,13 +654,13 @@ main#container header#main-header form select option{
 		text-indent:0.25em;
 	}
 
-	h4#area-header{
+	#area-header{
 		margin:0;
 		padding:0%;
 		line-height:30px;
 	}
 
-	main#container {
+	#container {
 		padding: 0.5em;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
@@ -692,11 +669,11 @@ main#container header#main-header form select option{
 		grid-row-gap: 0px;
 	}
 
-	main#container header#main-header {
+	#main-header {
 		grid-area: 1 / 1 / 2 / 7;
 	}
 
-	main#container header#main-header h1 {
+	#main-header h1 {
 		font-size: 1em;
 		line-height: 60px;
 		margin: 0;
@@ -755,34 +732,35 @@ main#container header#main-header form select option{
 		font-size: 1em;
 	}
 
-	#search-section #select-box {
+	#select-box {
 		width: 100%;
 		height: 100px;
 		display: block;
 	}
 
-	#search-section #select-box > label {
+	#select-box > label {
 		display:block;
 		line-height:30px;
 		font-size:1em;
 		text-indent:0.25em;
 	}
 
-	#search-section form#select-box select#crimes {
+	#cities, #crimes {
 		font-size: 0.9rem;
 	}
 
-	#search-section form#select-box select#crimes option {
+	#crimes option,
+	#cities option {
 		font-size: 0.9rem;
 	}
 
-	#search-section #text-container {
+	#text-container {
 		display: block;
 		width: 100%;
 		padding: 0;
 	}
 
-	#search-section #text-container .crime-panel {
+	.crime-panel {
 		height: auto;
 		display: block;
 		margin: 0;
@@ -792,12 +770,12 @@ main#container header#main-header form select option{
 		margin-bottom: 0.5em;
 	}
 
-	#search-section #text-container .crime-panel h2 {
+	.crime-panel h2 {
 		font-size: 1.1em;
 		line-height: 35px;
 	}
 
-	#search-section #text-container .crime-panel p {
+	.crime-panel p {
 		text-indent: 0.25em;
 	}
 

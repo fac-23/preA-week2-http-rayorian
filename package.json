@@ -12,7 +12,8 @@
 	"scripts": {
 		"build": "babel index.js -d dist",
 		"start": "npx nodemon --exec npx babel-node index.js",
-		"lint": "npx eslint --fix index.js"
+		"lint-js": "npx eslint index.js",
+		"lint-css": "npx stylelint \"**/*.css\""
 	},
 	"repository": {
 		"type": "git",
@@ -38,7 +39,9 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"globals": "^15.6.0"
+		"globals": "^15.6.0",
+		"stylelint": "^16.6.1",
+		"stylelint-config-standard": "^36.0.1"
 	},
 	"dependencies": {
 		"@babel/eslint-parser": "^7.18.9",

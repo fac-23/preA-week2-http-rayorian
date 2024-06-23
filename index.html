@@ -27,10 +27,6 @@
 		<main id="container">
 			<header id="main-header">
 				<h1>Crime Checker - Check the crime in your area</h1>
-				<form action="">
-					<label for="cities">Find Your City</label>
-					<select name="cities" id="cities"></select>
-				</form>
 			</header>
 			<div id="map">
 				<p class="sr-only">Loading map</p>
@@ -38,9 +34,13 @@
 			</div>
 
 			<section id="search-section">
-				<h3>Find Crime in Area :</h3>
+				<form form class="select-box">
+					<label for="cities">Find Your City</label>
+					<select name="cities" id="cities"></select>
+				</form>
+				<h3>Find Crime in Area</h3>
 				<h4 id="area-header"></h4>
-				<form id="select-box">
+				<form class="select-box">
 					<label for="crimes">Crime Committed By Category</label>
 					<select name="crimes" id="crimes">
 						<option value="">--Please choose an option--</option>
@@ -58,7 +58,7 @@
 						<option value="other-crime">other-crime</option>
 					</select>
 				</form>
-
+				<h3 id="area-headers"></h3>
 				<div id="text-container"></div>
 			</section>
 		</main>
