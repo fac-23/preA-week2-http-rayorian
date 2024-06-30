@@ -7,7 +7,8 @@ const runMap = () => {
 		console.log("Your browser does not support Mapbox GL");
 	}
 
-	mapboxgl.accessToken = "";
+	mapboxgl.accessToken =
+		"pk.eyJ1IjoicmF5b3JpYW5mYWMyMyIsImEiOiJjbHNodDBna2ExMmFuMmxvdWI2MTkyN25oIn0.Lg5ggPjT5EUhMMBe7J-0eg";
 
 	const { geolocation } = navigator;
 
@@ -170,8 +171,11 @@ const runMap = () => {
 			//Select element for choosing city
 			const citySelect = document.getElementById("cities");
 
+			// sort objects alphabetically by city name
+			const sortedObjects = data.sort((a, b) => a.city.localeCompare(b.city));
+
 			// Add city names and coordinates to options element for select element.
-			data.forEach((city) => {
+			sortedObjects.forEach((city) => {
 				const options = document.createElement("OPTION");
 				options.setAttribute("value", `${city.lat},${city.lng}`);
 				options.textContent = `${city.city}`;
