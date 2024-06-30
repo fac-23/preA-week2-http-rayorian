@@ -1,64 +1,68 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Crime checker</title>
+		<meta
+			name="viewport"
+			content="initial-scale=1,maximum-scale=1,user-scalable=no"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<link
+			href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css"
+			rel="stylesheet"
+		/>
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+		<style></style>
+	</head>
 
-<head>
-	<meta charset="utf-8">
-	<title>Crime checker</title>
-	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-	<link rel="stylesheet" href="style.css">
-	<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
-	<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
-	<style>
+	<body>
+		<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
+			type="text/css"
+		/>
 
-	</style>
-</head>
+		<main id="container">
+			<header id="main-header">
+				<h1>Crime Checker - Check the crime in your area</h1>
+			</header>
+			<div id="map">
+				<p class="sr-only">Loading map</p>
+				<div id="loader"></div>
+			</div>
 
-<body>
-	<script
-		src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
-	<link rel="stylesheet"
-		href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
+			<section id="search-section">
+				<h3>Find Crime in Area</h3>
+				<h4 id="area-header"></h4>
+				<form form class="select-box">
+					<label for="cities">Find Your Area</label>
+					<select name="cities" id="cities"></select>
+				</form>
+				<form class="select-box">
+					<label for="crimes">Crime Committed By Category</label>
+					<select name="crimes" id="crimes">
+						<option value="">--Please choose an option--</option>
+						<option value="anti-social-behaviour">anti social behaviour</option>
+						<option value="burglary">burglary</option>
+						<option value="criminal-damage-arson">criminal-damage-arson</option>
+						<option value="drugs">drugs</option>
+						<option value="possession-of-weapons">possession-of-weapons</option>
+						<option value="public-order">public-order</option>
+						<option value="shoplifting">shoplifting</option>
+						<option value="robbery">robbery</option>
+						<option value="theft-from-the-person">theft-from-the-person</option>
+						<option value="vehicle-crime">vehicle-crime</option>
+						<option value="violent-crime">violent-crime</option>
+						<option value="other-crime">other-crime</option>
+					</select>
+				</form>
+				<h3 id="area-headers"></h3>
+				<div id="text-container"></div>
+			</section>
+		</main>
 
-	<main id="container">
-		<header id="main-header">
-			<h1>Crime Checker - Check the crime in your area</h1>
-		</header>
-		<div id="map">
-			<p class="sr-only">Loading map</p>
-			<div id="loader"></div>
-		</div>
-
-		<section id="search-section">
-			<h3>Find Crime in Area : </h3>
-			<h4 id="area-header"></h4>
-			<form id="select-box">
-				<label for="crimes">Crime Committed By Category</label>
-				<select name="crimes" id="crimes">
-					<option value="">--Please choose an option--</option>
-					<option value="anti-social-behaviour">anti social behaviour</option>
-					<option value="bicycle-theft">bicycle-theft</option>
-					<option value="burglary">burglary</option>
-					<option value="criminal-damage-arson">criminal-damage-arson</option>
-					<option value="drugs">drugs</option>
-					<option value="possession-of-weapons">possession-of-weapons</option>
-					<option value="public-order">public-order</option>
-					<option value="shoplifting">shoplifting</option>
-					<option value="robbery">robbery</option>
-					<option value="theft-from-the-person">theft-from-the-person</option>
-					<option value="vehicle-crime">vehicle-crime</option>
-					<option value="violent-crime">violent-crime</option>
-					<option value="other-crime">other-crime</option>
-				</select>
-			</form>
-
-			<div id="text-container"></div>
-
-		</section>
-
-	</main>
-
-	<script src="index.js"></script>
-
-</body>
-
+		<script type="module" src="index.js"></script>
+	</body>
 </html>

@@ -1,0 +1,47 @@
+import globals from "globals";
+import pluginJs from "@eslint/js";
+
+export default [
+	{ languageOptions: { globals: globals.browser } },
+	pluginJs.configs.all,
+	{
+		rules: {
+			"max-lines-per-function": "off",
+			"sort-keys": "off",
+			"sort-vars": "off",
+			"one-var": "off",
+			"max-statements": "off",
+			"no-magic-numbers": "off",
+			"id-length": "off",
+			"no-inline-comments": "off",
+			"max-lines": "off",
+			"class-methods-use-this": "error",
+			"func-names": "warn",
+			"func-style": ["error", "expression"],
+			"new-cap": "error",
+			"no-console": "warn",
+			"no-invalid-this": "error",
+			"no-new-func": "error",
+			"no-process-exit": "warn",
+			"no-undef": "warn",
+			"no-unused-vars": "warn",
+			"prefer-const": "error",
+			"prefer-destructuring": [
+				"error",
+				{ array: true, object: true },
+				{ enforceForRenamedProperties: false },
+			],
+			"no-var": "error",
+			"prefer-arrow-callback": "warn",
+			"prefer-rest-params": "warn",
+			"arrow-parens": ["error", "always"],
+			"arrow-body-style": ["error", "as-needed"],
+			"no-eval": "error",
+			"no-implied-eval": "error",
+			eqeqeq: "error",
+			"no-with": "error",
+			"no-plusplus": "error",
+			strict: ["error", "global"],
+		},
+	},
+];
